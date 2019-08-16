@@ -1,0 +1,21 @@
+/* components/like/index.wxss */
+
+.container {
+  display: inline-flex;
+  border: 1px rebeccapurple solid;
+	padding: 10rpx;
+}
+
+.like {
+  width: 32rpx;
+  height: 28rpx;
+}
+
+.like-num {
+  position: relative;
+	left: 4rpx;
+	bottom: 10rpx;
+  font-size: 24rpx;
+	line-height: 24rpx;
+  color: #bbb;
+}
