@@ -1,11 +1,12 @@
 {
-	"pages": [
-		"pages/classic/classic"
-	],
-	"window": {
-		"navigationBarBackgroundColor": "#fff",
-		"navigationBarTitleText": "空岛",
-		"navigationBarTextStyle": "black",
-		"enablePullDownRefresh": false
-	}
+  "pages": [
+    "pages/classic/classic"
+  ],
+  "window": {
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "空岛",
+    "navigationBarTextStyle": "black",
+    "enablePullDownRefresh": false
+  },
+  "sitemapLocation": "sitemap77.json"
 }
