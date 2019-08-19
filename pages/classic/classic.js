@@ -1,18 +1,37 @@
 // pages/classic/classic.js
+import {Http} from "../../util/Http";
+let http = new Http()
 Page({
 
 	/**
 	 * 页面的初始数据
 	 */
 	data: {
-
+		test: 1
 	},
 
 	/**
 	 * 生命周期函数--监听页面加载
 	 */
 	onLoad: function (options) {
-
+		// wx.request({
+		// 		url: "http://bl.7yue.pro/v1/classic/latest",
+		// 		header: {
+		// 				appkey: 'xiQ2Yu7vfCsJlWkn'
+		// 		},
+		// 		success:(res)=>{
+		// 				console.log(this.data.test)
+		// 		},
+		// })
+			http.request({
+					url: 'classic/latest',
+			}).then(res =>{
+					console.log(res)
+			},err => {
+					wx.showToast({
+							title: 'aaa'
+					})
+			})
 	},
 
 	/**
