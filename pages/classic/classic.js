@@ -1,28 +1,50 @@
 // pages/classic/Classic.js
 import {ClassicModel} from "../../models/Classic";
+import {LikeModel} from "../../models/Like";
 
-let classic = new ClassicModel()
+let classicModel = new ClassicModel()
+let likeModel = new LikeModel()
 Page({
 
 		/**
 		 * 页面的初始数据
 		 */
 		data: {
-				classic: null
+				classic: null,
+				latest: false,
+				first: true,
 		},
-
+		onNext(){
+				this._updateClassic('previous')
+		},
+		onPrev(){
+			this._updateClassic('next')
+		},
+		_updateClassic(nextOrPrev){
+				classicModel.getClassic(this.data.classic.index, nextOrPrev)
+						.then(res => {
+								this.setData({
+										classic: res.data,
+										first: classicModel.isFirst(res.data.index),
+										latest: classicModel.isLatest(res.data.index)
+								})
+						})
+		},
 		/**
 		 * 生命周期函数--监听页面加载
 		 */
 		onLoad: function (options) {
-				classic.getLatest()
+				classicModel.getLatest()
 						.then(res => {
 								this.setData({
 										classic: res.data
 								})
-								console.log(this.data.classic)
 						})
 
+		},
+		onLike(e) {
+				let {behavior} = e.detail
+				likeModel.like(behavior,this.data.classic.id,this.data.classic.type).then(res=>{console.log(res)})
 		},
 
 		/**

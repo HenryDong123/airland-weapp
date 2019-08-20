@@ -2,8 +2,8 @@
 
 .container {
   display: inline-flex;
-  border: 1px rebeccapurple solid;
 	padding: 10rpx;
+	width: 90rpx;
 }
 
 .like {

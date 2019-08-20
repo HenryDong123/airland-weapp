@@ -1,4 +1,11 @@
 <!--pages/classic/classic.wxml-->
 <view class="container">
-  <x-like like="{{classic.like_status}}" count="{{classic.fav_nums}}" />
+  <view class="header">
+    <x-epsoide index="{{classic.index}}"></x-epsoide>
+    <x-like bind:like="onLike" like="{{classic.like_status}}" count="{{classic.fav_nums}}" ></x-like>
+  </view>
+  <x-movie img="{{classic.image}}" content="{{classic.content}}"></x-movie>
+<!--  <x-music wx:if="{{classic.type==200}}" img="{{classic.image}}" content="{{classic.content}}" title="{{classic.title}}" src="{{classic.url}}" />-->
+<!--  <x-essay wx:if="{{classic.type == 300}}" img="{{classic.image}}" content="{{classic.content}}" />-->
+  <x-navi bind:left="onPrev" bind:right="onNext" title="{{classic.title}}" first="{{first}}" latest="{{latest}}" class="navi" />
 </view>
