@@ -1,85 +1,76 @@
-// pages/classic/classic.js
-import {Http} from "../../util/Http";
-let http = new Http()
+// pages/classic/Classic.js
+import {ClassicModel} from "../../models/Classic";
+
+let classic = new ClassicModel()
 Page({
 
-	/**
-	 * 页面的初始数据
-	 */
-	data: {
-		test: 1
-	},
+		/**
+		 * 页面的初始数据
+		 */
+		data: {
+				classic: null
+		},
 
-	/**
-	 * 生命周期函数--监听页面加载
-	 */
-	onLoad: function (options) {
-		// wx.request({
-		// 		url: "http://bl.7yue.pro/v1/classic/latest",
-		// 		header: {
-		// 				appkey: 'xiQ2Yu7vfCsJlWkn'
-		// 		},
-		// 		success:(res)=>{
-		// 				console.log(this.data.test)
-		// 		},
-		// })
-			http.request({
-					url: 'classic/latest',
-			}).then(res =>{
-					console.log(res)
-			},err => {
-					wx.showToast({
-							title: 'aaa'
-					})
-			})
-	},
+		/**
+		 * 生命周期函数--监听页面加载
+		 */
+		onLoad: function (options) {
+				classic.getLatest()
+						.then(res => {
+								this.setData({
+										classic: res.data
+								})
+								console.log(this.data.classic)
+						})
 
-	/**
-	 * 生命周期函数--监听页面初次渲染完成
-	 */
-	onReady: function () {
+		},
 
-	},
+		/**
+		 * 生命周期函数--监听页面初次渲染完成
+		 */
+		onReady: function () {
 
-	/**
-	 * 生命周期函数--监听页面显示
-	 */
-	onShow: function () {
+		},
 
-	},
+		/**
+		 * 生命周期函数--监听页面显示
+		 */
+		onShow: function () {
 
-	/**
-	 * 生命周期函数--监听页面隐藏
-	 */
-	onHide: function () {
+		},
 
-	},
+		/**
+		 * 生命周期函数--监听页面隐藏
+		 */
+		onHide: function () {
 
-	/**
-	 * 生命周期函数--监听页面卸载
-	 */
-	onUnload: function () {
+		},
 
-	},
+		/**
+		 * 生命周期函数--监听页面卸载
+		 */
+		onUnload: function () {
 
-	/**
-	 * 页面相关事件处理函数--监听用户下拉动作
-	 */
-	onPullDownRefresh: function () {
+		},
 
-	},
+		/**
+		 * 页面相关事件处理函数--监听用户下拉动作
+		 */
+		onPullDownRefresh: function () {
 
-	/**
-	 * 页面上拉触底事件的处理函数
-	 */
-	onReachBottom: function () {
+		},
 
-	},
+		/**
+		 * 页面上拉触底事件的处理函数
+		 */
+		onReachBottom: function () {
 
-	/**
-	 * 用户点击右上角分享
-	 */
-	onShareAppMessage: function () {
+		},
 
-	}
+		/**
+		 * 用户点击右上角分享
+		 */
+		onShareAppMessage: function () {
+
+		}
 })
