@@ -16,5 +16,11 @@ export class LikeModel extends Http {
 				}
 				return this.request(params)
 		}
+		getClassicLikeStatus(artId,category) {
+			let params = {
+				url: `classic/${category}/${artId}/favor`
+			}
+			return this.request(params)
+		}
 
 }

@@ -2,7 +2,7 @@
 <view class="container">
   <view class="header">
     <x-epsoide index="{{classic.index}}"></x-epsoide>
-    <x-like bind:like="onLike" like="{{classic.like_status}}" count="{{classic.fav_nums}}" ></x-like>
+    <x-like bind:like="onLike" like="{{likeStatus}}" count="{{likeCount}}" ></x-like>
   </view>
   <x-movie img="{{classic.image}}" content="{{classic.content}}"></x-movie>
 <!--  <x-music wx:if="{{classic.type==200}}" img="{{classic.image}}" content="{{classic.content}}" title="{{classic.title}}" src="{{classic.url}}" />-->
