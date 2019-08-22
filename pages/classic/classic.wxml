@@ -1,11 +1,13 @@
 <!--pages/classic/classic.wxml-->
 <view class="container">
-  <view class="header">
-    <x-epsoide index="{{classic.index}}"></x-epsoide>
-    <x-like bind:like="onLike" like="{{likeStatus}}" count="{{likeCount}}" ></x-like>
-  </view>
-  <x-movie img="{{classic.image}}" content="{{classic.content}}"></x-movie>
-<!--  <x-music wx:if="{{classic.type==200}}" img="{{classic.image}}" content="{{classic.content}}" title="{{classic.title}}" src="{{classic.url}}" />-->
-<!--  <x-essay wx:if="{{classic.type == 300}}" img="{{classic.image}}" content="{{classic.content}}" />-->
-  <x-navi bind:left="onPrev" bind:right="onNext" title="{{classic.title}}" first="{{first}}" latest="{{latest}}" class="navi" />
+    <view class="header">
+        <x-epsoide index="{{classic.index}}"></x-epsoide>
+        <x-like bind:like="onLike" like="{{likeStatus}}" count="{{likeCount}}"></x-like>
+    </view>
+    <x-movie wx:if="{{classic.type===100}}" img="{{classic.image}}" content="{{classic.content}}"></x-movie>
+    <x-music wx:if="{{classic.type===200}}" img="{{classic.image}}" content="{{classic.content}}"
+             title="{{classic.title}}" musicSrc="{{classic.url}}"/>
+    <x-essay wx:if="{{classic.type === 300}}" img="{{classic.image}}" content="{{classic.content}}"/>
+    <x-navi bind:left="onPrev" bind:right="onNext" title="{{classic.title}}" first="{{first}}" latest="{{latest}}"
+            class="navi"/>
 </view>
