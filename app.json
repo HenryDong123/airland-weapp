@@ -9,5 +9,21 @@
     "enablePullDownRefresh": false
   },
   "sitemapLocation": "sitemap.json",
-  "requiredBackgroundModes": ["audio"]
+  "requiredBackgroundModes": [
+    "audio"
+  ],
+  "tabBar": {
+    "list": [
+      {
+        "pagePath": "pages/classic/classic",
+        "text": "流行",
+        "iconPath": ""
+      },
+      {
+        "pagePath": "pages/classic/classic",
+        "text": "流行",
+        "iconPath": ""
+      }
+    ]
+  }
 }
