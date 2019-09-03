@@ -5,21 +5,18 @@ const tips = {
 		3000: '期刊不存在'
 }
 export class Http {
-		request(params) {
-				if (!params.method) {
-						params.method = 'GET'
-				}
+		request({url,data,method = 'GET'}) {
 				return new Promise((resolve, reject)=>{
 						wx.request({
-								url: config.BASE_URL + params.url,
-								method: params.method,
-								data: params.data,
+								url: config.BASE_URL + url,
+								method,
+								data,
 								header: {
 										'content-type': 'application/json',
 										'appkey': config.APP_KEY
 								},
 								success:  (res) => {
-										let code =  res.statusCode + ''
+										const code =  res.statusCode + ''
 										if (code.startsWith('2')) {
 												resolve(res)
 										}else {
