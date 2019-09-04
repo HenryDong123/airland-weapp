@@ -1,9 +1,11 @@
 import {Http} from "../util/Http";
-
+const URL = {
+    GET_LATEST : 'classic/latest'
+}
 export class ClassicModel extends Http {
     getLatest() {
         return this.request({
-            url: 'classic/latest',
+            url: URL.GET_LATEST,
         }).then(res => {
             this._setLatestIdex(res.data.index)
             let key = this._getKey(res.data.index)

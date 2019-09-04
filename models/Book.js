@@ -1,5 +1,7 @@
 import {Http} from "../util/Http";
-
+const URL = {
+    GET_HOT_List: 'book/hot_list'
+}
 export class BookModel extends Http{
     constructor(){
         let params = {}
@@ -7,7 +9,7 @@ export class BookModel extends Http{
     }
     getHotList(){
         this.params ={
-            url: 'book/hot_list',
+            url: URL.GET_HOT_List
         }
         return this.request(this.params)
     }
