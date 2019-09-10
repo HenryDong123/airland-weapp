@@ -7,7 +7,9 @@ Page({
     /**
      * 页面的初始数据
      */
-    data: {},
+    data: {
+    	count: 0
+	},
 
     /**
      * 生命周期函数--监听页面加载
@@ -19,6 +21,9 @@ Page({
             })
             .then(res =>{
             	console.log(res)
+				this.setData({
+					count: res.data.count
+				})
 			})
     },
 
