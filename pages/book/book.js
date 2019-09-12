@@ -8,7 +8,7 @@ Page({
      * 页面的初始数据
      */
     data: {
-    	count: 0
+        books:[]
 	},
 
     /**
@@ -17,14 +17,11 @@ Page({
     onLoad: function (options) {
         bookModel.getHotList()
             .then(res => {
-                return bookModel.getBookCount()
+                console.log(res)
+                this.setData({
+                    books: res.data
+                })
             })
-            .then(res =>{
-            	console.log(res)
-				this.setData({
-					count: res.data.count
-				})
-			})
     },
 
     /**

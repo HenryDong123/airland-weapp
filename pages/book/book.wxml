@@ -1,2 +1,4 @@
 <!--pages/book/book.wxml-->
-<text>count:{{count}}</text>
+<block wx:for="{{books}}" wx:key="id">
+    <x-book book="{{item}}"></x-book>
+</block>
