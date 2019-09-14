@@ -1,4 +1,4 @@
 <!--pages/book/book.wxml-->
 <block wx:for="{{books}}" wx:key="id">
-    <x-book book="{{item}}"></x-book>
+    <x-book onTap="{{click}}" book="{{item}}"></x-book>
 </block>
