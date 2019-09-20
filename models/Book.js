@@ -20,4 +20,9 @@ export class BookModel extends Http{
         }
         return this.request(this.params)
     }
+    getBookDetail(){
+        this.params = {
+        }
+        return this.request(this.params)
+    }
 }
