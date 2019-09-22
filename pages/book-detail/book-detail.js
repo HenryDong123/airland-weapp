@@ -1,4 +1,7 @@
 // pages/book-detail/book-detail.js
+import {BookModel} from "../../models/Book";
+
+const bookModel = new BookModel
 Page({
 
 	/**
@@ -13,6 +16,9 @@ Page({
 	 */
 	onLoad: function (options) {
 		const bid = options.bid
+		bookModel.getDetail(bid)
+		bookModel.getLikeStatus(bid)
+		bookModel.getComments(bid)
 		console.log(bid)
 	},
 
