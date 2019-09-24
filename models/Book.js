@@ -2,9 +2,6 @@ import {Http} from "../util/Http";
 const URL = {
     GET_HOT_List: 'book/hot_list',
     GET_BOOK_COUNT: '/book/favor/count',
-    GET_DETAIL: `book/${bid}/detail`,
-    GET_LIKE_STATUS: `/book/${bid}/favor`,
-    GET_COMMENTS: `book/${bid}/short_comment`
 }
 export class BookModel extends Http{
     constructor(){
@@ -25,18 +22,18 @@ export class BookModel extends Http{
     }
     getDetail(bid){
         this.params = {
-            url: URL.GET_DETAIL
+            url: `book/${bid}/detail`
         }
         return this.request(this.params)
     }
     getLikeStatus(bid){
         return this.request({
-            url: URL.GET_LIKE_STATUS
+            url: `/book/${bid}/favor`
         })
     }
     getComments(bid){
         return this.request({
-            url: URL.GET_COMMENTS
+            url: `book/${bid}/short_comment`
         })
     }
 }
