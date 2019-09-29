@@ -9,6 +9,7 @@ Page({
      */
     data: {
         comments: [],
+		detail: null,
         book: null,
         likeStatus: false,
         likeCount: 0
@@ -24,22 +25,20 @@ Page({
         const comments = bookModel.getComments(bid)
         console.log(bid)
         detail.then(res => {
-            console.log(res, 1)
             this.setData({
-                book: res ? res : null
+                book: res ? res.data : null
             })
         })
         comments.then(res => {
-            console.log(res, 2)
             this.setData({
-                comments: res ? res : null
+                comments: res ? res.data.comments : null
             })
+            console.log(res)
         })
         likeStatus.then(res => {
-            console.log(res, 3)
             this.setData({
-                likeStatus: res.like_status ? res.like_status : null,
-                likeCount: res.fav_nums ? res.fav_nums : nullga
+                likeStatus: res.like_status ? res.data.like_status : null,
+                likeCount: res.fav_nums ? res.data.fav_nums : null
             })
         })
     },
