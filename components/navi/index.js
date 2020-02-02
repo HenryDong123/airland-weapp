@@ -18,7 +18,6 @@ Component({
 				disRightSrc: '../image/triangle.dis@right.png',
 				rightSrc: '../image/triangle@right.png'
 		},
-
 		/**
 		 * 组件的方法列表
 		 */

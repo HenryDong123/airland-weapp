@@ -1,7 +1,7 @@
 <!--components/tag/index.wxml-->
-<view class="container">
+<view class="container tag-class">
     <slot name="before"></slot>
     <text>{{text}}</text>
-    <text>{{num}}</text>
+<!--    <text>{{num}}</text>-->
     <slot name="after"></slot>
 </view>
