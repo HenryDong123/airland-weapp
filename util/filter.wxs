@@ -1,6 +1,7 @@
 var format = function (text) {
     //wxs
-    return '123'
+    // text.replace('/\\\n/g', '\n')
+    return '测试数据'
 }
 module.exports = {
     format:format
