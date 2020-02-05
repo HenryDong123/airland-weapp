@@ -1,7 +1,12 @@
 var format = function (text) {
     //wxs
     // text.replace('/\\\n/g', '\n')
-    return '测试数据'
+    if(!text){
+        return
+    }
+    var reg = getRegExp('\\\\n', 'g')
+
+    return text.replace(reg,'\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;')
 }
 module.exports = {
     format:format
