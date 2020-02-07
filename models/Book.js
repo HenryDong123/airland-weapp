@@ -2,6 +2,7 @@ import {Http} from "../util/Http";
 const URL = {
     GET_HOT_List: 'book/hot_list',
     GET_BOOK_COUNT: '/book/favor/count',
+    POST_COMMENT: '/book/add/short_comment',
 }
 export class BookModel extends Http{
     constructor(){
@@ -35,5 +36,16 @@ export class BookModel extends Http{
         return this.request({
             url: `book/${bid}/short_comment`
         })
+    }
+    postComments(bid,comment){
+        this.params = {
+            url: URL.POST_COMMENT,
+            method: 'POST',
+            data:{
+                book_id: bid,
+                content: comment
+            }
+        }
+        return this.request(this.params)
     }
 }
