@@ -21,29 +21,42 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
+        wx.showLoading()
         const bid = options.bid
         const detail = bookModel.getDetail(bid)
         const likeStatus = bookModel.getLikeStatus(bid)
         const comments = bookModel.getComments(bid)
+
+        Promise.all([detail, likeStatus, comments])
+            .then(res => {
+                console.log(res)
+                this.setData({
+                    book: res ? res[0].data : null,
+                    comments: res ? res[2].data.comments : null,
+                    likeStatus: res ? res[1].data.like_status : null,
+                    likeCount: res ? res[1].data.fav_nums : null
+                })
+                wx.hideLoading()
+            })
         console.log(bid)
-        detail.then(res => {
-            this.setData({
-                book: res ? res.data : null
-            })
-        })
-        comments.then(res => {
-            this.setData({
-                comments: res ? res.data.comments : null
-            })
-            console.log(res)
-        })
-        likeStatus.then(res => {
-            console.log(res)
-            this.setData({
-                likeStatus: res.data.like_status ? res.data.like_status : null,
-                likeCount: res.data.fav_nums ? res.data.fav_nums : null
-            })
-        })
+        // detail.then(res => {
+        //     this.setData({
+        //         book: res ? res.data : null
+        //     })
+        // })
+        // comments.then(res => {
+        //     this.setData({
+        //         comments: res ? res.data.comments : null
+        //     })
+        //     console.log(res)
+        // })
+        // likeStatus.then(res => {
+        //     console.log(res)
+        //     this.setData({
+        //         likeStatus: res.data.like_status ? res.data.like_status : null,
+        //         likeCount: res.data.fav_nums ? res.data.fav_nums : null
+        //     })
+        // })
     },
 
     onLike(e) {
@@ -61,7 +74,11 @@ Page({
         })
     },
     onPost(e) {
-        const comment = e.detail.text
+        const comment = e.detail.text || e.detail.value
+        // const commentInput = e.detail.value
+        if (!comment) {
+            return
+        }
         if (comment.length > 12) {
             wx.showToast({
                 title: '短评最多12字',
