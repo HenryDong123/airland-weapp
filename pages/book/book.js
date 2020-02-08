@@ -8,8 +8,9 @@ Page({
      * 页面的初始数据
      */
     data: {
-        books:[]
-	},
+        books: [],
+        searching: false
+    },
 
     /**
      * 生命周期函数--监听页面加载
@@ -23,8 +24,19 @@ Page({
                 })
             })
     },
-    click(e){
+    click(e) {
         console.log(e)
+    },
+    onSearching() {
+        this.setData({
+            searching: true
+        })
+    },
+    onCancel() {
+        console.log(11)
+        this.setData({
+            searching: false
+        })
     },
     /**
      * 生命周期函数--监听页面初次渲染完成
