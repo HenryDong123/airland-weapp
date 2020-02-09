@@ -15,4 +15,4 @@
         </view>
     </view>
 </view>
-<x-search wx:if="{{searching}}" bind:cancel="onCancel"></x-search>
+<x-search wx:if="{{searching}}" bind:cancel="onCancel" bind:delete="onDelete"></x-search>

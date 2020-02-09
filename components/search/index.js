@@ -22,6 +22,9 @@ Component({
 			this.triggerEvent('cancel')
 			console.log(222)
 
+		},
+		onDelete(e){
+			this.triggerEvent('delete')
 		}
 	}
 })
