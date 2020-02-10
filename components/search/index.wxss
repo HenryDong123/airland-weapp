@@ -1,4 +1,5 @@
 /* components/search/index.wxss */
+
 .container {
     display: flex;
     flex-direction: column;
@@ -57,10 +58,18 @@
 }
 
 .cancel-img {
-    width: 28rpx;
-    height: 28rpx;
+    width: 32rpx;
+    height: 32rpx;
+    display: block;
+    border: red 1px solid;
     margin-right: 20rpx;
+    z-index: 100;
 }
+
+/*.cancel-img > image {*/
+/*    width: 100%;*/
+/*    height: 100%;*/
+/*}*/
 
 .history {
     width: 690rpx;
@@ -132,7 +141,7 @@
     width: 630rpx;
 }
 
-.tags v-tag {
+.tags x-tag {
     margin-right: 20rpx;
     margin-bottom: 20rpx;
 }

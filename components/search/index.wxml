@@ -2,9 +2,14 @@
 <view class="container">
     <view class="header">
         <view class="search-container">
-            <image class="icon" src="images/search.png" />
-            <input value="{{q}}"  bind:confirm="onConfirm" placeholder-class='in-bar' placeholder='书籍名' class='bar' auto-focus="true" />
-            <image bind:tap="onDelete" class="cancel-img" src="images/cancel.png" />
+            <image class="icon" src="images/search.png"/>
+            <input  value="{{word}}" bind:confirm="onConfirm" placeholder-class='in-bar' placeholder='书籍名' class='bar'
+                    auto-focus="true"/>
+<!--            <view bind:tap="onDelete" class="cancel-img">-->
+<!--                <image src="images/cancel.png"/>-->
+<!--            </view>-->
+                        <image bind:tap="onDelete" class="cancel-img" src="images/cancel.png"/>
+
         </view>
         <view bind:tap="onCancel" class='cancel'>取消</view>
     </view>
@@ -15,8 +20,8 @@
                 <text>历史搜索</text>
             </view>
             <view class="tags">
-                <block wx:key="" wx:for="{{historyWords}}">
-                    <x-tag bind:tapping="onConfirm" text="{{item}}" />
+                <block wx:key="item" wx:for="{{historyWords}}">
+                    <x-tag bind:tapping="onConfirm" text="{{item}}"/>
                 </block>
             </view>
         </view>
@@ -26,20 +31,20 @@
                 <text>热门搜索</text>
             </view>
             <view class="tags">
-                <block wx:key="" wx:for="{{hotWords}}">
-                    <x-tag bind:tapping="onConfirm" text="{{item}}" />
+                <block wx:key="item" wx:for="{{hotWords}}">
+                    <x-tag bind:tapping="onConfirm" text="{{item}}"/>
                 </block>
             </view>
         </view>
     </view>
 
-<!--    <view wx:if="{{searching}}" class="books-container">-->
-<!--        <block wx:for="{{dataArray}}" wx:key="{{item.id}}">-->
-<!--            <v-book showLike="{{false}}" book="{{item}}" class="book" />-->
-<!--        </block>-->
-<!--    </view>-->
+    <view wx:if="{{searching}}" class="books-container">
+        <block wx:for="{{dataArray}}" wx:key="{{item.id}}">
+            <x-book showLike="{{false}}" book="{{item}}" class="book"/>
+        </block>
+    </view>
 
-<!--    <x-loading class="loading-center" wx:if="{{loadingCenter}}"/>-->
-<!--    <x-loading class="loading" wx:if="{{loading}}"/>-->
+    <!--    <x-loading class="loading-center" wx:if="{{loadingCenter}}"/>-->
+    <!--    <x-loading class="loading" wx:if="{{loading}}"/>-->
     <text wx:if="{{noneResult}}" class="empty-tip">没有搜索到书籍</text>
 </view>

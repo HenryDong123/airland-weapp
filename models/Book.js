@@ -3,13 +3,24 @@ const URL = {
     GET_HOT_List: 'book/hot_list',
     GET_BOOK_COUNT: '/book/favor/count',
     POST_COMMENT: '/book/add/short_comment',
+    SEARCH: '/book/search'
+
 }
 export class BookModel extends Http{
     constructor(){
         let params = {}
         super()
     }
-    getHotList(){
+    search({start, q, summary = 1}) {
+        return this.request({
+            url: URL.SEARCH,
+            data: {
+                start,
+                q,
+                summary,
+            }
+        })
+    }    getHotList(){
         this.params ={
             url: URL.GET_HOT_List
         }
