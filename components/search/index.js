@@ -1,6 +1,7 @@
 // components/search/index.js
 import {KeywordModel} from '../../models/keyword'
 import {BookModel} from '../../models/Book'
+import {paginationBev} from "../behavios/pagination";
 
 const keywordModel = new KeywordModel()
 const bookModel = new BookModel()
@@ -14,14 +15,13 @@ Component({
             observer: 'loadMore'
         }
     },
-
+    behaviors: [paginationBev],
     /**
      * 组件的初始数据
      */
     data: {
         historyWords: [],
         hotWords: [],
-        dataArray: [],
         searching: false,
         loadingCenter: false,
         loading: false,
@@ -43,17 +43,30 @@ Component({
      */
     methods: {
         loadMore() {
-            console.log(2323)
+            console.log(this.data.total)
             if (!this.data.word) {
                 return
             }
-            const length = this.data.dataArray.length
-            bookModel.search({start: length, q: this.data.word}).then(res => {
-                const tem = this.data.dataArray.concat(res.data.books)
-                this.setData({
-                    dataArray: tem
+            if (this.isLocked()) {
+                return
+            }
+            if (this.hasMore()) {
+                this.locked()
+                bookModel.search({start: this.getCurrentStart(), q: this.data.word}).then(res => {
+                    this.setMoreData(res.data.books)
+                    this.unLocked()
                 })
-            })
+            }
+        },
+        isLocked() {
+            return this.data.loading
+        },
+        locked() {
+            this.data.loading = true
+        },
+        unLocked() {
+            this.data.loading = false
+
         },
         onCancel(e) {
             this.triggerEvent('cancel')
@@ -63,26 +76,36 @@ Component({
         },
         onDelete(e) {
             // this.triggerEvent('delete')
-            this.setData({
-                searching: false,
-            })
+           this.closeResult()
         },
         onConfirm(e) {
+            this.showResult()
             this.setData({
-                searching: true,
                 word: e.detail.value || e.detail.text
-
             })
+            this.init()
             const word = e.detail.value || e.detail.text
             bookModel.search({start: 0, q: word}).then(
                 res => {
-                    this.setData({
-                        dataArray: res.data.books,
-                    })
+                    this.setMoreData(res.data.books)
+                    this.setTotal(res.data.total)
                     keywordModel.addToHistory(word)
 
+                },
+                () =>{
+                    this.unLocked()
                 }
             )
+        },
+        showResult() {
+            this.setData({
+                searching: true,
+            })
+        },
+        closeResult(){
+            this.setData({
+                searching: false,
+            })
         }
     }
 })
