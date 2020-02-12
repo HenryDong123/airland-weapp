@@ -25,6 +25,7 @@ Component({
         searching: false,
         loadingCenter: false,
         loading: false,
+        // noneResult: false,
         word: ''
     },
     attached() {
@@ -55,31 +56,41 @@ Component({
                 bookModel.search({start: this.getCurrentStart(), q: this.data.word}).then(res => {
                     this.setMoreData(res.data.books)
                     this.unLocked()
+
+                }, () => {
+                    this.unLocked()
                 })
             }
         },
-        isLocked() {
-            return this.data.loading
-        },
-        locked() {
-            this.data.loading = true
-        },
-        unLocked() {
-            this.data.loading = false
-
-        },
+        // isLocked() {
+        //     return this.data.loading
+        // },
+        // locked() {
+        //     // this.data.loading = true
+        //     this.setData({
+        //         loading: true
+        //     })
+        // },
+        // unLocked() {
+        //     this.setData({
+        //         loading: false
+        //     })
+        //
+        // },
         onCancel(e) {
             this.triggerEvent('cancel')
-
+            this.init()
             console.log(222)
 
         },
         onDelete(e) {
             // this.triggerEvent('delete')
-           this.closeResult()
+            this.closeResult()
+            this.init()
         },
         onConfirm(e) {
             this.showResult()
+            this.showLoadingCenter()
             this.setData({
                 word: e.detail.value || e.detail.text
             })
@@ -90,21 +101,35 @@ Component({
                     this.setMoreData(res.data.books)
                     this.setTotal(res.data.total)
                     keywordModel.addToHistory(word)
+                    this.hideLoadingCenter()
 
                 },
-                () =>{
+                () => {
                     this.unLocked()
+                    this.hideLoadingCenter()
+
                 }
             )
+        },
+        showLoadingCenter() {
+            this.setData({
+                loadingCenter: true
+            })
+        },
+        hideLoadingCenter() {
+            this.setData({
+                loadingCenter: false
+            })
         },
         showResult() {
             this.setData({
                 searching: true,
             })
         },
-        closeResult(){
+        closeResult() {
             this.setData({
                 searching: false,
+                word: ''
             })
         }
     }
