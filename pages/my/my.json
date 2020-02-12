@@ -1,3 +1,6 @@
 {
-  "usingComponents": {}
+  "usingComponents": {
+    "x-button": "/components/image-button/index",
+    "x-preview": "/components/preview/index"
+  }
 }

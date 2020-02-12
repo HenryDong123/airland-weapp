@@ -2,11 +2,16 @@
 <view class="container">
     <view class="header">
         <x-epsoide index="{{classic.index}}"></x-epsoide>
-        <x-like bind:like="onLike" like="{{likeStatus}}" count="{{likeCount}}"></x-like>
+        <view class="like-container">
+            <x-like bind:like="onLike" like="{{likeStatus}}" count="{{likeCount}}"></x-like>
+            <x-button class="share-btn" open-type="share">
+                <image src="/images/icon/share.png" slot="img" class="share"></image>
+            </x-button>
+        </view>
     </view>
     <x-movie wx:if="{{classic.type===100}}" img="{{classic.image}}" content="{{classic.content}}"></x-movie>
     <x-music wx:if="{{classic.type===200}}" img="{{classic.image}}" content="{{classic.content}}"
-             title="{{classic.title}}" musicSrc="{{classic.url}}"/>
+            title="{{classic.title}}" musicSrc="{{classic.url}}"/>
     <x-essay wx:if="{{classic.type === 300}}" img="{{classic.image}}" content="{{classic.content}}"/>
     <x-navi bind:left="onPrev" bind:right="onNext" title="{{classic.title}}" first="{{first}}" latest="{{latest}}"
             class="navi"/>

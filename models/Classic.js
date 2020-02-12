@@ -13,6 +13,12 @@ export class ClassicModel extends Http {
             return res
         })
     }
+    getMyFavor() {
+        const params = {
+            url: 'classic/favor',
+        }
+        return this.request(params)
+    }
 
     getClassic(index, nextOrPrev) {
         let params = {
